@@ -1,121 +1,142 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
-/// Tentei alterar todas LET/CONST para ingles, fail !
-///Vou solucionar o calculo da tabela
+  // Até que o código ta bem escrito, até o css ta de boas kkkk
+  // Também dei fail ai pra trocar os nome pra ingres ficou faltando "investimentoMes" e todas as variaveis com montante
+  // Vou solucionar o calculo da tabela ---> R: Boa sorte c ta doido
 
-  
-  const [initialValue, setInitialValue] = useState('');
-  const [monthlyValue, setMonthlyValue] = useState('');
-  const [interestRate, setInterestRate] = useState('');
-  const [periodAnnual, setPeriodAnnual] = useState('');
-  const [result, setResult] = useState({ montante: 0, juros: 0, totalInvestido: 0 });
+  const [formValues, setFormValues] = useState({
+    initialValue: '',
+    monthlyValue: '',
+    interestRate: '',
+    annualPeriod: ''
+  })
+
+  const [result, setResult] = useState({
+    montante: 0,
+    interest: 0,
+    totalInvested: 0
+  });
+
   const [monthlyData, setMonthlyData] = useState([]);
 
-  const calc = () => {
-    const taxaJurosMensal = parseFloat(interestRate.replace(',', '.')) / 100 / 12;
-    const totalMeses = periodAnnual * 12;
+  const calculate = () => {
+    const { initialValue, monthlyValue, interestRate, annualPeriod } = formValues // Isso se chama "Destructuring"
 
-    const monthlyData = [];
+    const monthlyInterestRate = parseFloat(interestRate.replace(',', '.')) / 100 / 12;
+    const totalMonths = annualPeriod * 12;
+
+    const monthlyValues = [];
     let montanteAtual = parseFloat(initialValue.replace(',', ''));
-    let jurosTotal = 0;
+    let totalInterest = 0;
 
-    for (let mes = 1; mes <= totalMeses; mes++) {
-      const jurosMes = montanteAtual * taxaJurosMensal;
-      const montanteMes = montanteAtual + jurosMes + parseFloat(monthlyValue.replace(',', ''));
-      const investimentoMes = parseFloat(monthlyValue.replace(',', '')) + jurosMes;
+    for (let i = 1; i <= totalMonths; i++) {
+      const interestOfMonth = montanteAtual * monthlyInterestRate;
+      const montanteMes = montanteAtual + interestOfMonth + parseFloat(monthlyValue.replace(',', ''));
+      const investimentoMes = parseFloat(monthlyValue.replace(',', '')) + interestOfMonth;
 
-      monthlyData.push({
-        mes,
+      monthlyValues.push({
+        month: i,
         montante: montanteMes.toFixed(2),
-        juros: jurosMes.toFixed(2),
-        investido: investimentoMes.toFixed(2),
+        interest: interestOfMonth.toFixed(2),
+        invested: investimentoMes.toFixed(2),
       });
 
       montanteAtual = montanteMes;
-      jurosTotal += jurosMes;
+      totalInterest += interestOfMonth;
     }
 
     setResult({
       montante: montanteAtual.toFixed(2),
-      juros: jurosTotal.toFixed(2),
-      totalInvestido: (parseFloat(initialValue.replace(',', '')) + parseFloat(monthlyValue.replace(',', '')) * totalMeses).toFixed(2),
+      interest: totalInterest.toFixed(2),
+      totalInvested: (parseFloat(initialValue.replace(',', '')) + parseFloat(monthlyValue.replace(',', '')) * totalMonths).toFixed(2),
     });
 
-    setMonthlyData(monthlyData);
+    setMonthlyData(monthlyValues);
   };
 
   return (
-    
-    <div className='App'>
+    <div className='component'>
       <h2>Calculadora juros compostos</h2>
-      <label>Valor inicial (R$)</label>
-      <input
-        type='text'
-        placeholder='0,00'
-        value={initialValue}
-        onChange={(e) => setInitialValue(e.target.value)}
-      />
-      <label>Valor mensal (R$)</label>
-      <input
-        type='text'
-        placeholder='0,00'
-        value={monthlyValue}
-        onChange={(e) => setMonthlyValue(e.target.value)}
-      />
-      <label>Taxa de juros anual (%)</label>
-      <input
-        type='text'
-        placeholder='0,00'
-        value={interestRate}
-        onChange={(e) => setInterestRate(e.target.value)}
-      />
-      <label>Período anual</label>
-      <input
-        type='number'
-        placeholder='0'
-        value={periodAnnual}
-        onChange={(e) => setPeriodAnnual(e.target.value)}
-      />
 
-      <button onClick={calc}>Calcular</button>
+      <form >
+        <label>Valor inicial (R$)</label>
+        <input
+          type='text'
+          placeholder='0,00'
+          value={formValues.initialValue}
+          onChange={(e) => setFormValues({ ...formValues, 'initialValue': e.target.value })} // Esse "..." antes do form e um operador chamado spread. Basicamente ele pega todos os valores de um obj e passa para o novo.
+        />
 
-      <div className='result-container'>
-        <div>
-          <label>Montante</label>
-          <span>R$ {result.montante}</span>
-        </div>
-        <div>
-          <label>Juros gerados</label>
-          <span>R$ {result.juros}</span>
-        </div>
-        <div>
-          <label>Total investido</label>
-          <span>R$ {result.totalInvestido}</span>
-        </div>
-      </div>
+        <label>Valor mensal (R$)</label>
+        <input
+          type='text'
+          placeholder='0,00'
+          value={formValues.monthlyValue}
+          onChange={(e) => setFormValues({ ...formValues, 'monthlyValue': e.target.value })}
+        />
 
-      <table className='monthly-table'>
-        <thead>
-          <tr>
-            <th>Mês</th>
-            <th>Montante</th>
-            <th>Juros</th>
-            <th>Investido</th>
-          </tr>
-        </thead>
-        <tbody>
-          {monthlyData.map((data) => (
-            <tr key={data.mes}>
-              <td>{data.mes}</td>
-              <td>R$ {data.montante}</td>
-              <td>R$ {data.juros}</td>
-              <td>R$ {data.investido}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+        <label>Taxa de juros anual (%)</label>
+        <input
+          type='text'
+          placeholder='0,00'
+          value={formValues.interestRate}
+          onChange={(e) => setFormValues({ ...formValues, 'interestRate': e.target.value })}
+        />
+
+        <label>Período anual</label>
+        <input
+          type='number'
+          placeholder='0'
+          value={formValues.annualPeriod}
+          onChange={(e) => setFormValues({ ...formValues, 'annualPeriod': e.target.value })}
+        />
+
+        <button className='button' type='button' onClick={calculate}>Calcular</button>
+      </form>
+
+      {/*  Esse "?" é um operador condicional ternário é basicamente um mini if/else. "condição ? true : false " */}
+      {monthlyData.length !== 0 ? // Só vai renderizar os resultados caso o "monthlyData" não esteja vazio
+        <div>
+          <div className='result-container'>
+            <div>
+              <label>Montante</label>
+              <span>R$ {result.montante}</span>
+            </div>
+            <div>
+              <label>Juros gerados</label>
+              <span>R$ {result.interest}</span>
+            </div>
+            <div>
+              <label>Total investido</label>
+              <span>R$ {result.totalInvested}</span>
+            </div>
+          </div>
+          <table className='monthly-table'>
+            <thead>
+              <tr>
+                <th>Mês</th>
+                <th>Montante</th>
+                <th>Juros</th>
+                <th>Investido</th>
+              </tr>
+            </thead>
+            <tbody>
+              {monthlyData.map((data) => (
+                <tr key={data.month}>
+                  <td>{data.month}</td>
+                  <td>R$ {data.montante}</td>
+                  <td>R$ {data.interest}</td>
+                  <td>R$ {data.invested}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        :
+        ''
+      }
     </div>
   );
 }

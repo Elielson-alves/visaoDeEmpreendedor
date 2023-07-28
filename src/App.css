@@ -1,11 +1,10 @@
-
-.App {
+.component {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
   font-family: Arial, sans-serif;
 }
-/* Verifica sapora pa noixx, sofri demais aqui */
+
 h2 {
   margin-bottom: 20px;
 }
@@ -23,20 +22,8 @@ input {
   border-radius: 5px;
 }
 
-button {
-  display: block;
+.button {   /* Era só adicionar o classaname no botão com o nome dessa classe*/
   width: 100%;
-  padding: 10px;
-  background-color: #4CAF50;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.button {
-  display: inline-block;
   background-color: #4CAF50;
   color: #fff;
   border: none;
@@ -66,7 +53,7 @@ button {
   text-align: center;
 }
 
-table.monthly-table {
+.monthly-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
