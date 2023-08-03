@@ -2,3 +2,9 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
+
+/* Vai remover as setas que vem de padrão no input do tipo number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}

@@ -2,14 +2,12 @@ import { useState } from 'react';
 import './Calculator.css';
 
 function Calculator() {
-  // Até que o código ta bem escrito, até o css ta de boas kkkk
-  // Também dei fail ai pra trocar os nome pra ingres ficou faltando "investimentoMes" e todas as variaveis com montante
   // Vou solucionar o calculo da tabela ---> R: Boa sorte c ta doido
 
   const [formValues, setFormValues] = useState({
-    initialValue: '',
-    monthlyValue: '',
-    interestRate: '',
+    initialValue: '0,00',
+    monthlyValue: '0,00',
+    interestRate: '0,00',
     annualPeriod: ''
   })
 
@@ -22,7 +20,7 @@ function Calculator() {
   const [monthlyData, setMonthlyData] = useState([]);
 
   const calculate = () => {
-    const { initialValue, monthlyValue, interestRate, annualPeriod } = formValues // Isso se chama "Destructuring"
+    const { initialValue, monthlyValue, interestRate, annualPeriod } = removeMask() // Isso se chama "Destructuring"
 
     const monthlyInterestRate = parseFloat(interestRate.replace(',', '.')) / 100 / 12;
     const totalMonths = annualPeriod * 12;
@@ -56,6 +54,30 @@ function Calculator() {
     setMonthlyData(monthlyValues);
   };
 
+  const currencyMask = e => {
+    if (e != '') {
+      let value = e
+      value = value.replace('.', '').replace(',', '').replace(/\D/g, '')
+
+      const options = { minimumFractionDigits: 2 }
+      const result = new Intl.NumberFormat('pt-BR', options)
+        .format(parseFloat(value) / 100)
+
+      return result
+    } else {
+      return '0,00'
+    }
+  }
+
+  const removeMask = () => {
+    const formWithNoMask = { ...formValues } // Esse "..." antes do form e um operador chamado spread. Basicamente ele pega todos os valores de um obj e passa para o novo.
+    formWithNoMask.initialValue = formValues.initialValue.replace(/\./g, '').replace(',', '.')
+    formWithNoMask.monthlyValue = formValues.monthlyValue.replace(/\./g, '').replace(',', '.')
+    formWithNoMask.interestRate = formValues.interestRate.replace(/\./g, '').replace(',', '.')
+
+    return formWithNoMask
+  }
+
   return (
     <div className='component'>
       <h2>Calculadora juros compostos</h2>
@@ -66,7 +88,7 @@ function Calculator() {
           type='text'
           placeholder='0,00'
           value={formValues.initialValue}
-          onChange={(e) => setFormValues({ ...formValues, 'initialValue': e.target.value })} // Esse "..." antes do form e um operador chamado spread. Basicamente ele pega todos os valores de um obj e passa para o novo.
+          onChange={(e) => setFormValues({ ...formValues, 'initialValue': currencyMask(e.target.value) })}
         />
 
         <label>Valor mensal (R$)</label>
@@ -74,7 +96,7 @@ function Calculator() {
           type='text'
           placeholder='0,00'
           value={formValues.monthlyValue}
-          onChange={(e) => setFormValues({ ...formValues, 'monthlyValue': e.target.value })}
+          onChange={(e) => setFormValues({ ...formValues, 'monthlyValue': currencyMask(e.target.value) })}
         />
 
         <label>Taxa de juros anual (%)</label>
@@ -82,7 +104,7 @@ function Calculator() {
           type='text'
           placeholder='0,00'
           value={formValues.interestRate}
-          onChange={(e) => setFormValues({ ...formValues, 'interestRate': e.target.value })}
+          onChange={(e) => setFormValues({ ...formValues, 'interestRate': currencyMask(e.target.value) })}
         />
 
         <label>Período anual</label>
