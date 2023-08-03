@@ -1,0 +1,54 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    padding: 1.5rem 4rem;
+    margin-top: 1rem;   /* Talvez remover depois*/
+}
+
+.header.scrolled {
+    box-shadow: 0 0 20px -3px #00000046;
+    position: sticky;
+    top: 0;
+    width: 89.9%;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.links {
+    list-style: none;
+    display: flex;
+    border-bottom: 0px solid;
+    padding: 0;
+    margin: 0;
+}
+
+.links>li {
+    margin: 0 1rem;
+}
+
+.links>li>a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+.selected-link {
+    display: block;
+    width: 100%;
+    background-color: #4CAF50;  /*Talvez trocar cor para "#000" */
+    height: 2px;
+    transition: 0.4s;
+}
+
+.not-selected-link {
+    display: block;
+    transition: 0.4s;
+    height: 2px;
+    width: 0;
+}
