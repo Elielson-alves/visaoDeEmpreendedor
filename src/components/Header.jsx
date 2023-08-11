@@ -1,5 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
-import './Header.css'
+import './Header.css';
+import Logo from '../images/logo.png';
+
 
 const Header = () => {
     const location = useLocation()
@@ -24,11 +26,11 @@ const Header = () => {
     return (
         <div className='header' id='header'>
             <a href="/">
-                <h1>Logo</h1>
+                <img className='logo' src={Logo} alt='Logo' title='Logo'/>
             </a>
             <ul className='links'>
                 <li >
-                    <Link to='/'>ínicio</Link>
+                    <Link to='/'>Início</Link>
                     <span
                         className={selectedRoute('')}
                     ></span>
