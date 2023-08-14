@@ -1,7 +1,7 @@
 import React from 'react';
 import './AboutUs.css';
-import ImgElielson from '../images/imgelielson.jpg';
-import ImgVinicius from '../images/imgvinicius.jpg';
+import ImgElielson from '../assets/imgelielson.jpg';
+import ImgVinicius from '../assets/imgvinicius.jpg';
 
 const AboutUs = () => {
     return (

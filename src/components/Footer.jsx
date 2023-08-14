@@ -1,8 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import './Footer.css';
-import Imggithub from '../images/img-github.png';
-import Imglinkedin from '../images/img-linkedin.png';
-import Imgwhatsapp  from '../images/Img-whatsapp.png';
+import Imggithub from '../assets/img-github.png';
+import Imglinkedin from '../assets/img-linkedin.png';
 
 
 const Footer = () => {
@@ -24,15 +23,15 @@ const Footer = () => {
                 <h2>Github</h2>
 
                 <a href='https://github.com/viny9'>
-                    <lo className='linkGithub'> Github Vinicius </lo>
+                    <ol className='linkGithub'> Github Vinicius </ol>
                 </a>
 
                 <a href='https://github.com/Elielson-alves'>
-                    <lo className='linkGithub' > Github Elielson </lo>
+                    <ol className='linkGithub' > Github Elielson </ol>
                 </a>
 
                 <a href='https://github.com/Elielson-alves/visaoDeEmpreendedor'>
-                    <lo className='linkGithub'> Repositório remoto do projeto </lo>
+                    <ol className='linkGithub'> Repositório remoto do projeto </ol>
                 </a>
 
             </ul>
@@ -43,26 +42,26 @@ const Footer = () => {
                 <h2>Linkedin</h2>
 
                 <a href='/'>
-                    <lo className='linklinkedin'> Linkedin Vinicius </lo>
+                    <ol className='linklinkedin'> Linkedin Vinicius </ol>
                 </a>
 
                 <a href='/'>
-                    <lo className='linklinkedin' > Linkedin Elielson </lo>
+                    <ol className='linklinkedin' > Linkedin Elielson </ol>
                 </a>
 
             </ul>
 
             <ul className='lista-3'>
 
-                <img className='img-whatsapp' src={Imgwhatsapp} alt='whasapp' title='whatsapp' />
+                {/* <img className='img-whatsapp' src={Imgwhatsapp} alt='whasapp' title='whatsapp' /> */}
                 <h2>Whatsapp</h2>
 
                 <a href='/'>
-                    <lo className='linkwhatsapp'> Whatsapp Vinicius </lo>
+                    <ol className='linkwhatsapp'> Whatsapp Vinicius </ol>
                 </a>
 
                 <a href='/'>
-                    <lo className='linkwhatsapp' > Whatsapp Elielson </lo>
+                    <ol className='linkwhatsapp' > Whatsapp Elielson </ol>
                 </a>
 
 
