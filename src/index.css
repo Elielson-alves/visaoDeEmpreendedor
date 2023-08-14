@@ -1,6 +1,16 @@
+html {
+    height: 100%;
+}
+
 body {
+    background-color: rgb(127, 127, 127);
+    height: 100%;
     margin: 0;
     font-family: Arial, sans-serif;
+}
+
+#root {
+    height: 100%;
 }
 
 /* Vai remover as setas que vem de padrão no input do tipo number */

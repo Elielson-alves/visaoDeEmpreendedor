@@ -2,13 +2,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 1rem;
-    background-color: black;
-    padding: 1rem 4rem;
+    /* margin-bottom: 1rem; */
+    background-color: rgb(245, 245, 247, 0.9);
+    padding: 0.1rem 4rem;
 }
 
 .header.scrolled {
-    box-shadow: 0 0 20px -3px #00000046;
+    box-shadow: 0 0 20px -3px #000000c5;
     position: sticky;
     top: 0;
 }
@@ -33,7 +33,7 @@
 
 .links>li>a {
     text-decoration: none;
-    color: white;
+    color: rgb(0, 0, 0);
     font-weight: bold;
 }
 
