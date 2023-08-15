@@ -5,7 +5,6 @@ const Home = () => {
         <div className='home'>
             <div className='img-enginner'>
                 <div className='bloco-txt'>
-
                     <p className='txt-welcome'>Bem-vindo ao espaço dedicado à democratização da educação financeira!</p>
 
                     <p className='txt-home'>Informações práticas e acessíveis, independentemente
