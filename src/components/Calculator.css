@@ -1,7 +1,7 @@
-.component {
+.calculator {
     max-width: 600px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 2rem 0;
 }
 
 h2 {

@@ -79,7 +79,7 @@ function Calculator() {
   }
 
   return (
-    <div className='component'>
+    <div className='calculator'>
       <h2>Calculadora juros compostos</h2>
 
       <form >
