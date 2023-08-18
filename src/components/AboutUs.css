@@ -1,11 +1,9 @@
 .aboutUs {
     display: flex;
     justify-content: space-between;
-    margin: 0 50px;
     align-items: center;
-    gap: 30px;
+    margin: 0 50px;
     height: 100%;
-
 }
 
 .v-perfil, .e-perfil {

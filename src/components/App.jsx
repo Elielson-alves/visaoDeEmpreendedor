@@ -8,9 +8,7 @@ function App() {
   return (
     <BrowserRouter>
         <Header />
-      <div className='teste'>
         <Router />
-      </div>
         <Footer />
     </BrowserRouter>
 
